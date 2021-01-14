@@ -3,9 +3,23 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-
-
-
+document.body.addEventListener('click', function(event){
+  if (event.target.matches(".like-glyph")) {
+    mimicServerCall()
+    .then(function(serverMessage) {
+      if (event.target.textContent === EMPTY_HEART) {
+        event.target.textContent = FULL_HEART
+        event.target.style.color = "red"
+      } else {
+        event.target.textContent = EMPTY_HEART
+        event.target.style.color = ""
+      }
+    })
+    .catch(function(error) {
+      document.getElementById("modal").className = "";
+    })
+  }
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
